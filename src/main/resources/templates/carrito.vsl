@@ -1,0 +1,43 @@
+<script>
+function borrarCarrito(id_modelo)
+{
+  $.ajax({
+          url: 'borrarCarrito',
+          type: 'get',
+          data: {id_modelo: id_modelo },
+          success: function(data) {
+                $("#mostrarCarrito").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    
+}
+</script>
+
+
+
+
+
+<table class="responsive-table centered">
+        <thead>
+          <tr>
+              <th>Nombre Producto</th>
+              <th>Cantidad </th>
+              <th>Precio por item</th>
+            <th> OPCION</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          #foreach ($p in $productos)
+            <tr>
+              <td>$p.getNombre()</td>
+              <td>$p.getCantidad()</td>
+              <td>$p.getSub_Precio()</td>
+              <td><button class="btn-small" onClick="borrarCarrito($p.getId_Modelo())"><i class="material-icons">remove_circle</i></button></td>
+            </tr>
+          #end
+        </tbody>
+</table>

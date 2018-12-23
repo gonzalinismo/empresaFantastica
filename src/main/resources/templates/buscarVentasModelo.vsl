@@ -1,0 +1,119 @@
+#if($bandera)
+<script>
+$("mostrarModelo").ready(
+    function(){
+        $.ajax({
+          url: 'getModelo',
+          type: 'get',
+          data: {id_modelo: $id_modeloBuscado },
+          success: function(data) {
+                $("#mostrarModelo").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    });
+
+</script>
+
+#end
+<script>
+function validarFecha()
+{
+	var bandera=false
+	let fechaDesde=new Date($("#desde").val());
+	let fechaHasta=new Date($("#hasta").val());
+	
+	console.log(fechaDesde.getTime());
+	console.log(fechaHasta.getTime());
+	if(fechaHasta.getTime()-fechaDesde.getTime()>0){
+		bandera=true;
+	}
+		
+	else
+	{
+		swal({
+ 	 		type: 'error',
+  			title: 'Oops...',
+  			text: 'Fechas en orden INCORRECTO!',
+  
+		})
+		bandera=false;
+	}
+	return bandera;
+}
+</script>
+<form  action='' method='get' onsubmit="return validarFecha()">
+		<div class="row center">
+		
+			<select id="modelos" name="id_modelo" style="display:block" required>
+        	<option value='' disabled selected>Seleccione una opcion </option>
+        	#foreach ($modelo is $modeloxmarcaxcategoria)
+        		
+            	<option value="$modelo.getId_Modelo()" >$modelo.getNombre_Categoria() $modelo.getNombre_Marca() 
+            	$modelo.getNombre_Modelo() $modelo.getDescripcion()</option>
+            	
+        	#end
+    		</select>
+		</div>				
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="date" name="fecha_desde" id="desde" onkeypress="return false" required>
+				<label for="desde">Desde</label>
+			</div>
+			<div class="input-field col s4">
+				<input type="date" name="fecha_hasta" id="hasta" onkeypress="return false" required> 
+				<label for="hasta" >Hasta</label> 
+			</div>
+		</div>
+		<div class="row">
+			<ul class="botonera center-align">
+
+				<li><a id="boton" class="btn-small" href="/" >Volver</a></li>
+				<li><button id="boton" class="btn-small" form-action="/buscarVentasModelo">Buscar</button></li>
+			</ul>
+		</div>
+		
+</form>
+<div id="mostrarModelo" ></div>
+<script>
+$("select").change(
+    function(){
+        $.ajax({
+          url: 'getModelo',
+          type: 'get',
+          data: {id_modelo: $(this).val() },
+          success: function(data) {
+                $("#mostrarModelo").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    });
+
+</script>
+
+#if($bandera)
+
+<table class="responsive-table centered">
+				<thead>
+                    <tr>
+                    <th>Fecha venta</th>
+                    <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     #foreach ($m in $ventasxarticulosxfecha)
+                        <tr>
+                            <td>$m.getFecha_venta()</td>
+                            <td> $m.getCantidad()</td>
+                            
+                         
+                         </tr>                   
+                     #end
+                </tbody>
+</table>
+<div class="center-align"><a id="boton" href="/crearPublicidad" class="btn-large" >Publicitar</a></div>
+#end

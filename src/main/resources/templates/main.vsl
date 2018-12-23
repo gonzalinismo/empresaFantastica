@@ -1,0 +1,174 @@
+
+                                                      <div class="carousel carousel-slider center">   
+                                                                #foreach ($q in $publicidades)
+                                                                  <div class="carousel-item " href="#one!">
+                                                                            <a ><img class="responsive-img"  src="$q.ubicacion"> </a>
+                                                                    </div>
+                                                                 #end   
+                                                        </div>
+                                                        <div class="relleno">
+                                                        <h1>Black Friday</h1>
+                                                        
+
+
+                                                        
+
+
+<div class="row">
+    <div class="col s10 m10 l3">
+      <div class="card">
+        <div class="card-image">
+          <img src="pics/st620.jpg">
+          <span class="card-title">Noga st-620</span>
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal2"><i class="material-icons">add_shopping_cart</i></a>
+        </div>
+        <div class="card-content">
+          <p>wifi retroiluminado</p>
+        </div>
+      </div>
+    </div>
+
+<div class="col s10 m10 l3">
+      <div class="card">
+        <div class="card-image">
+          <img src="pics/logitech.jpg">
+          <span class="card-title">Logitech Gpro </span>
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal3"><i class="material-icons">add_shopping_cart</i></a>
+        </div>
+        <div class="card-content">
+          <p>RGB 12000</p>
+        </div>
+      </div>
+    </div>  
+
+    <div class="col s10 m10 l3">
+      <div class="card">
+        <div class="card-image">
+          <img src="pics/gm301.png">
+          <span class="card-title">Panter GM301</span>
+          <a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal4"><i class="material-icons">add_shopping_cart</i></a>
+        </div>
+        <div class="card-content">
+          <p> </p>
+        </div>
+      </div>
+    </div>
+
+
+
+</div>
+<script>
+function funcion1(id_modelo1)
+{
+  $.ajax({
+          url: 'agregarCarrito',
+          type: 'get',
+          data: {id_modelo:id_modelo1,cant:$("#input_text1").val() },
+          success: function(data) {
+                $("#insertarCarrito").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    
+}
+</script>
+<script>
+function funcion2(id_modelo1)
+{
+  $.ajax({
+          url: 'agregarCarrito',
+          type: 'get',
+          data: {id_modelo: id_modelo1,cant:$("#input_text2").val() },
+          success: function(data) {
+                $("#insertarCarrito").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    
+}
+</script>
+<script>
+function funcion3(id_modelo1)
+{
+  $.ajax({
+
+          url: 'agregarCarrito',
+          type: 'get',
+          data: {id_modelo: id_modelo1,cant:$("#input_text3").val() },
+          success: function(data) {
+                $("#insertarCarrito").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    
+}
+</script>
+<script>
+function agregado()
+{
+  M.toast({html: 'Agregado correctamente', classes: 'rounded'});
+}
+</script>
+
+<!-- Modal Structure -->
+  <div id="modal2" class="modal modal1">
+    <div class="modal-content">
+      <h4>Ingerese cantidad</h4>
+      <div class="row">
+          <div class="input-field col s6">
+            <input id="input_text1" value="1" type="number">
+            <label for="input_text">Cantidad</label>
+          </div>
+        </div>
+ 
+      
+    </div>
+    <div class="modal-footer center" >
+      <a  class="modal-close waves-effect waves-green btn-small "  onClick="funcion1(1);agregado()">Confirmar</a>
+      <button  class="modal-close waves-effect waves-green btn-small">Cancelar</button>
+    </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal3" class="modal modal1">
+    <div class="modal-content">
+      <h4>Ingerese cantidad</h4>
+      <div class="row">
+          <div class="input-field col s6">
+            <input id="input_text2" value="1" type="number">
+            <label for="input_text">Cantidad</label>
+          </div>
+        </div>
+ 
+      
+    </div>
+    <div class="modal-footer center" >
+      <a  class="modal-close waves-effect waves-green btn-small" onClick="funcion2(2);agregado()">Confirmar</a>
+      <button  class="modal-close waves-effect waves-green btn-small">Cancelar</button>
+    </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal4" class="modal modal1">
+    <div class="modal-content">
+      <h4>Ingerese cantidad</h4>
+      <div class="row">
+          <div class="input-field col s6">
+            <input id="input_text3" value="1" type="number">
+            <label for="input_text">Cantidad</label>
+          </div>
+        </div>
+ 
+      
+    </div>
+    <div class="modal-footer center" >
+      <a  class="modal-close waves-effect waves-green btn-small" onClick="funcion3(3);agregado()">Confirmar</a>
+      <button  class="modal-close waves-effect waves-green btn-small">Cancelar</button>
+    </div>
+  </div>
+  <div id="insertarCarrito"></div>
+</div>

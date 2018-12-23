@@ -1,0 +1,39 @@
+<table >
+        <thead >
+          <tr>
+              <th>Nombre Producto</th>
+              <th>Cantidad </th>
+              <th>Precio por item</th>
+            <th> OPCION</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>compu</td>
+            <td>1</td>
+            <td>$0.87</td>
+            <td><button class="btn-small">quitar</button</td>
+          </tr>
+          <tr>
+            <td>mouse</td>
+            <td>1</td>
+            <td>1</td>
+<td><button class="btn-small">quitar</button</td>
+          </tr>
+          <tr>
+            <td>cossa</td>
+            <td>2</td>
+            <td>1000</td>
+<td><button class="btn-small">quitar</button</td>
+          </tr>
+ <tr>
+            <td>cosita</td>
+            <td>2</td>
+            <td>50</td>
+<td><button class="btn-small">quitar</button</td>
+          </tr>
+        </tbody>
+      </table>
+
+<h4>total= $</h4> suma de todos los precios

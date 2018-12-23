@@ -1,0 +1,61 @@
+<script>
+function validarFecha()
+{
+	var bandera=false
+	let fechaDesde=new Date($("#inicio").val());
+	let fechaHasta=new Date($("#fin").val());
+	
+	console.log(fechaDesde.getTime());
+	console.log(fechaHasta.getTime());
+	if(fechaHasta.getTime()-fechaDesde.getTime()>0){
+		bandera=true;
+	}
+		
+	else
+	{
+		swal({
+ 	 		type: 'error',
+  			title: 'Oops...',
+  			text: 'Fechas en orden INCORRECTO!',
+  
+		})
+		bandera=false;
+	}
+	return bandera;
+}
+</script>
+
+
+ <form  action='/insertarPublicidad' method='put' onsubmit="return validarFecha()">
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="date" name="fecha_inicio" id="inicio" onkeypress="return false" required>
+				<label for="inicio">inicio</label>
+			</div>
+			<div class="input-field col s4">
+				<input type="date" name="fecha_fin" id="fin" onkeypress="return false" required> 
+				<label for="fin" >fin</label> 
+			</div>
+		</div>
+
+		<div class="row center">
+			<div class="input-field col s8">					
+				<label for="descripcion" >Ingrese la descripcion</label>
+				<input type="text" name="descripcion" id="descripcion" required>
+			</div>
+		</div>
+
+						
+
+		<div class="row center">
+			<div class="input-field col s8">					
+				<label for="imagen_banner" >Ingrese la ruta del banner</label>
+				<input type="text" name="imagen_banner" id="imagen_banner" required>
+			</div>
+		</div>	
+	
+
+		<div class="row">
+	   	<button type="submit" class="btn-large">Crear</button>
+		</div>
+</form>

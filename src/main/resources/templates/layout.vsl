@@ -1,0 +1,168 @@
+##Velocity Template
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--JQuery-->
+    <script  src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
+    
+  
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--hoja de estilo -->        
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="main.js"></script>
+  <script src="sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.css">
+
+
+
+	<title></title>
+</head>
+<body>
+    
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             var elems = document.querySelectorAll('.modal');
+             var instances = M.Modal.init(elems);
+           });
+    </script>
+
+
+
+
+
+<script>
+function verCarrito()
+{
+         $.ajax({
+          url: 'verCarrito',
+          type: 'get',
+          data: {id_modelo: "s" },
+          success: function(data) {
+                $("#mostrarCarrito").html(data);
+          },
+          error: function(e) {
+            alert("Error Ajax")
+          }
+        });
+    
+}
+</script>
+
+
+
+
+
+
+
+
+
+<div class="navbar-fixed">
+<nav>
+<div class="nav-wrapper">
+                <a href="#" class="brand-logo">Fantastica</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+            <div class="input-field col s6 s12 white-text">
+                <i class="white-text small material-icons prefix">search</i>
+                <input type="text" placeholder="Buscar" id="autocomplete-input" class="white-text">
+            </div>
+        </li>
+             #foreach ($m is $menu)
+                                          <li class="nav-item 
+                                                #if ($m.url == $menuActivo)
+                                                    active
+                                                #end
+                                            ">
+                                            #if($m.label=="Ver carrito")
+                                                <a id="modalink"  class="waves-effect waves-light nav-link modal-trigger" id="mod" href="#modal1" onClick="verCarrito()" ><i class="material-icons">shopping_cart</i></a>
+
+                                            #else
+                                                <a class="nav-link" href="$m.url">$m.label</a>
+                                            #end
+
+
+                                          </li>
+              #end
+                </ul>
+ </div>
+</nav>
+</div>
+     <ul class="pepito sidenav" id="mobile-demo">
+                        <li>
+            <div class="input-field col s3 l12 white-text">
+                <i class="white-text small material-icons prefix">search</i>
+                <input type="text" placeholder="Buscar" id="autocomplete-input" class="white-text">
+            </div>
+        </li>
+
+                    #foreach ($p is $menuSide)
+                                                  <li class="nav-item 
+                                                        #if ($p.url == $menuActivo)
+                                                            active
+                                                        #end
+                                                    ">
+                                                    <a class="nav-link" href="$p.url">$p.label</a>
+                                                    
+                                                  </li>
+                                               #end
+
+             #foreach ($m is $menu)
+                                          <li class="nav-item 
+                                                #if ($m.url == $menuActivo)
+                                                    active
+                                                #end
+                                            ">
+                                            #if($m.label=="Ver carrito")
+                                                <a id="modalink"  class="waves-effect waves-light nav-link modal-trigger" id="mod" href="#modal1" onClick="verCarrito()" ><i class="material-icons">shopping_cart</i></a>
+
+                                            #else
+                                                <a class="nav-link" href="$m.url">$m.label</a>
+                                            #end
+
+
+                                          </li>
+              #end
+              
+              
+                </ul>
+
+
+    <ul id="mobile-demo" class="pedrito sidenav sidenav-fixed">
+            #foreach ($p is $menuSide)
+                                                  <li class="nav-item 
+                                                        #if ($p.url == $menuActivo)
+                                                            active
+                                                        #end
+                                                    ">
+                                                    <a class="nav-link" href="$p.url">$p.label</a>
+                                                    
+                                                  </li>
+                                               #end
+    </ul>
+
+   
+    <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div id="mostrarCarrito"      class="modal-content">
+      
+    </div>
+    <div class="modal-footer">
+      <button  class="modal-close waves-effect waves-green btn-small">Volver</button>
+    </div>
+  </div>
+  <div class="areaPrincipal ">
+    
+    #parse( $template )
+  </div>  
+ 
+  
+
+ </body>
+ </html>
